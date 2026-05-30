@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application.Services
 {
-    internal class RecipeService
+    public class RecipeService
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application.Validators
 {
-    internal class CreateRecipeValidator
+    public class CreateRecipeValidator
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Infrastructure.Persistence.Repositories
 {
-    internal class RecipeRepository
+    public class RecipeRepository
     {
     }
 }

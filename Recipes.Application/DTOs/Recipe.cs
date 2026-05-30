@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application.DTOs
 {
-    internal class Recipe
+    public class Recipe
     {
     }
 }

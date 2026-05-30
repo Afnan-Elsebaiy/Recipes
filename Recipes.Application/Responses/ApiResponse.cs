@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application.Responses
 {
-    internal class ApiResponse
+    public class ApiResponse
     {
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application
 {
-    internal class DependencyInjection
+    public class DependencyInjection
     {
     }
 }

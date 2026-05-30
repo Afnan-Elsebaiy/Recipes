@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Recipes.Application.Interfaces
 {
-    internal interface IRepository
+    public interface IRepository
     {
     }
 }
