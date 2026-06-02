@@ -1,10 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace Recipes.Infrastructure.Persistence.Context
+namespace Recipes.Infrastructure.Persistence.Context;
+
+public class AppDbContext : DbContext
 {
-    public class AppDbContext
+    public AppDbContext(
+        DbContextOptions<AppDbContext> options)
+        : base(options)
     {
     }
 }
