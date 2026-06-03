@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-MapsterExtensions.RegisterMapsterConfiguration();
+
 
 builder.Services.AddOpenApi();
 

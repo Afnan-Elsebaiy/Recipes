@@ -1,10 +1,9 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using Recipes.Application.Interfaces;
+using Recipes.Application.Mappings;
 using Recipes.Application.Services;
 using System.Reflection;
-
-namespace Recipes.Application.DependencyInjection;
 
 public static class ServiceRegistration
 {
@@ -16,6 +15,7 @@ public static class ServiceRegistration
         services.AddValidatorsFromAssembly(
             Assembly.GetExecutingAssembly());
 
+        MapsterConfig.RegisterMappings();
         return services;
     }
 }

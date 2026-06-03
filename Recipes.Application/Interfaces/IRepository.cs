@@ -9,7 +9,7 @@ namespace Recipes.Application.Interfaces
     {
         Task<TEntity?> GetByIdAsync(int id);
 
-        Task<List<TEntity>> GetAllAsync();
+        Task<IReadOnlyList<TEntity>> GetAllAsync();
 
         Task AddAsync(TEntity entity);
 

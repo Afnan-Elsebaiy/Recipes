@@ -7,7 +7,6 @@ using Recipes.Application.Responses;
 namespace Recipes.API.Controllers
 {
    
-
     [ApiController]
     [Route("api/[controller]")]
     public class RecipesController : ControllerBase
@@ -20,24 +19,24 @@ namespace Recipes.API.Controllers
             _recipeService = recipeService;
         }
 
-        [HttpGet]
-        public IActionResult Get()
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetRecipeById(int id)
         {
-            return Ok("API Working");
+            var recipe = await _recipeService.GetByIdAsync(id);
+
+            return Ok(recipe);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(
-            CreateRecipeDto dto)
+        public async Task<IActionResult> CreateRecipe(
+        CreateRecipeDto dto)
         {
             var id = await _recipeService.CreateAsync(dto);
 
-            return Ok(new ApiResponse<int>
-            {
-                Success = true,
-                Message = "Recipe created successfully",
-                Data = id
-            });
+            return CreatedAtAction(
+                nameof(GetRecipeById),
+                new { id },
+                new { id });
         }
     }
 }

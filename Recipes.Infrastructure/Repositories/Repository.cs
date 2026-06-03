@@ -28,7 +28,7 @@ namespace Recipes.Infrastructure.Repositories
             return await _dbSet.FindAsync(id);
         }
 
-        public async Task<List<TEntity>> GetAllAsync()
+        public async Task<IReadOnlyList<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();
         }
