@@ -22,7 +22,7 @@ namespace Recipes.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetRecipeById(int id)
         {
-            var recipe = await _recipeService.GetRecipeByIdAsync(id);
+            var recipe = await _recipeService.GetByIdAsync(id);
 
             return Ok(recipe);
         }
@@ -31,7 +31,7 @@ namespace Recipes.API.Controllers
         public async Task<IActionResult> CreateRecipe(
         CreateRecipeDto dto)
         {
-            var id = await _recipeService.CreateRecipeAsync(dto);
+            var id = await _recipeService.CreateAsync(dto);
 
 
             return CreatedAtAction(

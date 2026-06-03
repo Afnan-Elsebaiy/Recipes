@@ -7,7 +7,7 @@ namespace Recipes.Application.Interfaces
 {
     public interface IRecipeService
     {
-        Task<int> CreateRecipeAsync(CreateRecipeDto dto);
-        Task<RecipeDto> GetRecipeByIdAsync(int id);
+        Task<int> CreateAsync(CreateRecipeDto dto);
+        Task<RecipeDto> GetByIdAsync(int id);
     }
 }
