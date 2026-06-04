@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Mapster;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Recipes.Application.DTOs.Recipe;
 using Recipes.Application.Interfaces;
 using Recipes.Application.Responses;
+using Recipes.Domain.Entities;
 
 namespace Recipes.API.Controllers
 {
@@ -24,6 +26,9 @@ namespace Recipes.API.Controllers
         {
             var recipe = await _recipeService.GetByIdAsync(id);
 
+            if (recipe is null)
+                return NotFound();
+
             return Ok(recipe);
         }
 
@@ -31,13 +36,12 @@ namespace Recipes.API.Controllers
         public async Task<IActionResult> CreateRecipe(
         CreateRecipeDto dto)
         {
-            var id = await _recipeService.CreateAsync(dto);
-
+            var recipe = await _recipeService.CreateAsync(dto);
 
             return CreatedAtAction(
                 nameof(GetRecipeById),
-                new { id },
-                new { id });
+                new { id = recipe.Id },
+                recipe);
         }
     }
 }

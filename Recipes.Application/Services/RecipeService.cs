@@ -23,7 +23,7 @@ namespace Recipes.Application.Services
         }
 
 
-        public async Task<int> CreateAsync(CreateRecipeDto dto)
+        public async Task<RecipeDto> CreateAsync(CreateRecipeDto dto)
         {
             var validator = new CreateRecipeValidator();
 
@@ -37,7 +37,7 @@ namespace Recipes.Application.Services
             await _repository.AddAsync(recipe);
             await _repository.SaveChangesAsync();
 
-            return recipe.Id;
+            return recipe.Adapt<RecipeDto>();
         }
         public async Task<RecipeDto> GetByIdAsync(int id)
         {
@@ -49,5 +49,7 @@ namespace Recipes.Application.Services
 
             return recipe.Adapt<RecipeDto>();
         }
+
+    
     }
 }
