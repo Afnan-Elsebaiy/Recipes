@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Recipes.Application
+namespace Recipes.Infrastructure.Repositories
 {
-    public class DependencyInjection
+    public class RecipeRepository
     {
     }
 }

@@ -1,11 +1,10 @@
-﻿using Recipes.Domain.Common;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Recipes.Domain.Entities
+namespace Recipes.Application.DTOs.Recipe
 {
-    public class Recipe : BaseEntity
+    public class CreateRecipeDto
     {
         public string Name { get; set; } = default!;
 
