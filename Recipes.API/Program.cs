@@ -1,4 +1,4 @@
-using Recipes.Application.DependencyInjection;
+
 using Recipes.Application.Mappings;
 using Recipes.Infrastructure.DependencyInjection;
 
