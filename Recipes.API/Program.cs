@@ -1,4 +1,5 @@
 
+using Recipes.API.ExceptionHandling;
 using Recipes.Application.Mappings;
 using Recipes.Infrastructure.DependencyInjection;
 
@@ -15,7 +16,12 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(
     builder.Configuration);
 
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+builder.Services.AddProblemDetails();
+
 var app = builder.Build();
+
+app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
 {
