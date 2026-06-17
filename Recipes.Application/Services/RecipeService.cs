@@ -26,19 +26,16 @@ namespace Recipes.Application.Services
         }
 
 
-        public async Task<ApiResponse<RecipeDto>> CreateAsync(CreateRecipeDto dto)
+        public async Task<ApiResponse<RecipeDto>> CreateRecipeAsync(CreateRecipeDto dto)
         {
             var result = await _validator.ValidateAsync(dto);
 
-            return !result.IsValid
-                ? ResponseHelper.Failed<RecipeDto>(
+            if(!result.IsValid)
+            {
+                return ResponseHelper.Failed<RecipeDto>(
                     string.Join(", ", result.Errors.Select(e => e.ErrorMessage))
-                  )
-                : await CreateRecipeInternal(dto);
-        }
-
-        private async Task<ApiResponse<RecipeDto>> CreateRecipeInternal(CreateRecipeDto dto)
-        {
+                  );
+            }
             var recipe = dto.Adapt<Recipe>();
 
             await _repository.AddAsync(recipe);
@@ -50,15 +47,27 @@ namespace Recipes.Application.Services
             );
         }
 
-        public async Task<ApiResponse<RecipeDto>> GetByIdAsync(int id)
+
+
+        public async Task<ApiResponse<RecipeDto>> GetRecipeByIdAsync(int id)
         {
+            if (id <= 0)
+            {
+                return ResponseHelper.Failed<RecipeDto>(
+                    "Id must be greater than zero"
+                );
+            }
+
             var recipe = await _repository.GetByIdAsync(id);
 
             return recipe is null
-                ? ResponseHelper.NotFound<RecipeDto>("Recipe not found")
-                : ResponseHelper.Success(
-                    recipe.Adapt<RecipeDto>(),
-                    "Recipe retrieved successfully");
+            ? ResponseHelper.NotFound<RecipeDto>(
+                "Recipe not found"
+              )
+            : ResponseHelper.Success(
+                recipe.Adapt<RecipeDto>(),
+                "Recipe retrieved successfully"
+              );
         }
 
 

@@ -11,7 +11,6 @@ namespace Recipes.Application.Common.Responses
             return new ApiResponse<T>
             {
                 StatusCode = ApiStatusCodes.Ok,
-                Type = ResponseType.Success,
                 Message = message,
                 Data = data
             };
@@ -22,7 +21,6 @@ namespace Recipes.Application.Common.Responses
             return new ApiResponse<T>
             {
                 StatusCode = ApiStatusCodes.Created,
-                Type = ResponseType.Created,
                 Message = message,
                 Data = data
             };
@@ -33,7 +31,6 @@ namespace Recipes.Application.Common.Responses
             return new ApiResponse<T>
             {
                 StatusCode = ApiStatusCodes.BadRequest,
-                Type = ResponseType.Failed,
                 Message = message
             };
         }
@@ -43,7 +40,6 @@ namespace Recipes.Application.Common.Responses
             return new ApiResponse<T>
             {
                 StatusCode = ApiStatusCodes.NotFound,
-                Type = ResponseType.NotFound,
                 Message = message
             };
         }
