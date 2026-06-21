@@ -13,6 +13,7 @@ namespace Recipes.Domain.Entities
 
         public int Calories { get; set; }
 
+
         public int Protein { get; set; }
     }
 }

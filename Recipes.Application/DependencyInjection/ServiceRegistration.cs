@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Recipes.Application.Interfaces;
 using Recipes.Application.Mappings;
 using Recipes.Application.Services;
+using Recipes.Application.Validators;
 using System.Reflection;
 
 public static class ServiceRegistration
@@ -12,8 +13,7 @@ public static class ServiceRegistration
     {
         services.AddScoped<IRecipeService, RecipeService>();
 
-        services.AddValidatorsFromAssembly(
-            Assembly.GetExecutingAssembly());
+        services.AddValidatorsFromAssemblyContaining<CreateRecipeValidator>();
 
         MapsterConfig.RegisterMappings();
         return services;

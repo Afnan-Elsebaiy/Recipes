@@ -1,4 +1,5 @@
-﻿using Recipes.Application.DTOs.Recipe;
+﻿using Recipes.Application.Common.Responses;
+using Recipes.Application.DTOs.Recipe;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace Recipes.Application.Interfaces
 {
     public interface IRecipeService
     {
-        Task<RecipeDto> CreateAsync(CreateRecipeDto dto);
-        Task<RecipeDto> GetByIdAsync(int id);
+        Task<ApiResponse<RecipeDto>> CreateAsync(CreateRecipeDto dto);
+        Task<ApiResponse<RecipeDto>> GetByIdAsync(int id);
     }
 }
