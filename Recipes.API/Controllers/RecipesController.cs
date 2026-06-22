@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Recipes.Application.DTOs.Recipe;
 using Recipes.Application.Interfaces;
-using Recipes.Application.Responses;
 using Recipes.Domain.Entities;
 
 namespace Recipes.API.Controllers
@@ -11,7 +10,7 @@ namespace Recipes.API.Controllers
    
     [ApiController]
     [Route("api/[controller]")]
-    public class RecipesController : ControllerBase
+    public class RecipesController : BaseController
     {
         private readonly IRecipeService _recipeService;
 
@@ -24,24 +23,19 @@ namespace Recipes.API.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetRecipeById(int id)
         {
-            var recipe = await _recipeService.GetByIdAsync(id);
+            var response = await _recipeService.GetByIdAsync(id);
 
-            if (recipe is null)
-                return NotFound();
-
-            return Ok(recipe);
+            return HandleResponse(response);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> CreateRecipe(
-        CreateRecipeDto dto)
-        {
-            var recipe = await _recipeService.CreateAsync(dto);
+       
 
-            return CreatedAtAction(
-                nameof(GetRecipeById),
-                new { id = recipe.Id },
-                recipe);
+        [HttpPost]
+        public async Task<IActionResult> CreateRecipe([FromBody] CreateRecipeDto dto)
+        {
+            var response = await _recipeService.CreateAsync(dto);
+
+             return HandleResponse(response);
         }
     }
 }

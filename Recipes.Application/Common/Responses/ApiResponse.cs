@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Recipes.Application.Responses
+namespace Recipes.Application.Common.Responses
 {
     public class ApiResponse<T>
     {
-        public bool Success { get; set; }
-
+        public int StatusCode { get; set; }
+        public ResponseType Type { get; set; }
         public string Message { get; set; } = string.Empty;
-
         public T? Data { get; set; }
     }
 }
